@@ -1,10 +1,12 @@
 # Starcraft Installer
 
-Utilities to install StarCraft Broodwar 1.18
+Utilities to install StarCraft Brood War 1.18 via Docker
+
+![Image of BroodWar](doc/brood-war.jpg)
 
 ## With Docker
 
-Tested with Docker version 17.03.1-ce & Wine version 2.10 (Staging).
+Tested on Ubuntu 16.04 with Docker version 17.03.1-ce & Wine version 2.10 (Staging).
 
 ### Clone this repository
 
