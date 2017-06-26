@@ -49,9 +49,43 @@ Accept to install Mono & Gecko when Wine proposes this option.
 It may fails a first time during the install just after the Mono & Gecko install.
 Re-launch the same command, it should ask to accept the condition and proceed to the install.
 
-## Run from the image
+## Commit the container
+
+In order to keep this install and not have to re-install each time you run the container, we can commit the current state.
+
+Letting your image running, from your host, you can open a new terminal and commit the change as a new version:
 
 ```
+cd ~/git/starcraft
+docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+eaed235c833e        starcraft           "bash"              8 minutes ago       Up 8 minutes                            dreamy_blackwell
+
+docker commit eaed235c833e nidup/startcraft:version1
+sha256:64833859f8db864964a55930cedac6143d563a3336fe36fd3e9b67713737e67c
+```
+
+Check the image:
+
+```
+docker images
+REPOSITORY                                                   TAG                     IMAGE ID            CREATED             SIZE
+nidup/startcraft                                             version1                64833859f8db        5 minutes ago       5.82 GB
+```
+
+We can now stop the image, from the container:
+
+```
+developer@eaed235c833e:~$ exit
+```
+
+## Launch Starcraft
+
+Run the image using the image id you previously committed:
+```
+cd ~/git/starcraft
+docker run -ti --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix --security-opt seccomp=unconfined 64833859f8db bash
+
 wine ~/.wine/drive_c/Program\ Files\ \(x86\)/StarCraft/StarCraft.exe
 ```
 
