@@ -26,4 +26,5 @@ USER developer
 ENV HOME /home/developer
 WORKDIR /home/developer
 
-COPY StarCraft-Setup.exe /home/developer/
+RUN mkdir -p /home/developer/install
+VOLUME /home/developer/install
