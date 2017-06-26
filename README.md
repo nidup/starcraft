@@ -61,6 +61,10 @@ To check your user and group id use the command `id`:
 uid=1000(nico) gid=1000(nico) groups=1000(nico), 999(docker)
 ```
 
+## Sources
+
+[Dockerfile](https://github.com/nidup/starcraft/)
+
 ## Update the Images
 
 [Update the Images](https://github.com/nidup/starcraft/blob/master/doc/update.md)
