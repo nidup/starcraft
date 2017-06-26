@@ -66,7 +66,6 @@ CONTAINER ID        IMAGE                   COMMAND             CREATED         
 45e51a9fdd1e        nidup/starcraft:empty   "bash"              22 minutes ago      Up 22 minutes                           friendly_hodgkin
 
 $ docker commit 45e51a9fdd1e nidup/starcraft:v118
-sha256:496621e99e92ebaa9b76b43cee69ddd75c724192f082efdefc672d44db643f91
 ```
 
 Check the image:
@@ -87,4 +86,69 @@ developer@45e51a9fdd1e:~$ exit
 
 ```
 $ docker push nidup/starcraft:v118
+```
+
+## Build v1.16.1 Image
+
+### Download Brood+War.7z
+
+Install following the [ICC Tutorial](https://iccup.com/en/starcraft/sc_start.html).
+
+Download the file `Brood+War.7z` in the `install` folder from the [ICC](http://www.mediafire.com/file/nao9aef0n6p27dg/Brood+War.7z).
+
+Download the file `SC-1161.exe` in the `install` folder from the [official blizzard website](http://ftp.blizzard.com/pub/starcraft/patches/PC/SC-1161.exe).
+
+```
+$ cd ~/git/starcraft/install
+$ ls
+$ Brood+War.7z SC-1161.exe
+```
+
+Unzip Brood+War.7z
+
+### Run the v118 Image
+
+```
+$ docker run -ti --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v /home/nico/git/starcraft/install:/home/developer/install --security-opt seccomp=unconfined nidup/starcraft:v118 bash
+```
+
+### Copy the ICC client
+
+```
+$ mkdir ~/.wine/drive_c/Program\ Files\ \(x86\)/StarCraft1161
+$ cp -r install/Brood\ War/* ~/.wine/drive_c/Program\ Files\ \(x86\)/StarCraft1161/
+```
+
+### Create a New Image
+
+In order to keep this install and not have to re-install each time you run the container, we can commit the current state.
+
+Letting your image running, from your host, you can open a new terminal and commit the change as a new version:
+
+```
+$ docker ps
+CONTAINER ID        IMAGE                  COMMAND             CREATED             STATUS              PORTS               NAMES
+c4266930ad4d        nidup/starcraft:v118   "bash"              9 minutes ago       Up 9 minutes                            upbeat_pasteur
+
+$ docker commit c4266930ad4d nidup/starcraft:v116
+```
+
+Check the image:
+
+```
+$ docker images
+REPOSITORY                                                   TAG                     IMAGE ID            CREATED             SIZE
+nidup/starcraft                                              v116                    622d592ea3f6        15 seconds ago      5.97 GB
+```
+
+We can now stop the image:
+
+```
+developer@45e51a9fdd1e:~$ exit
+```
+
+### Push the v116 Image
+
+```
+$ docker push nidup/starcraft:v116
 ```
