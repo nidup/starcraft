@@ -10,10 +10,15 @@ Tested on Ubuntu 16.04 with Docker 17.03.1-ce.
 
 Installed from the [official blizzard website](https://starcraft.com/en-us/articles/20674424).
 
-Run the image (from the host):
+Pull the image  (from the host):
 
 ```
 $ docker pull nidup/starcraft:v118
+```
+
+Run the image (from the host):
+
+```
 $ docker run -ti --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix --security-opt seccomp=unconfined nidup/starcraft:v118 bash
 ```
 
@@ -26,19 +31,6 @@ $ wine ~/.wine/drive_c/Program\ Files\ \(x86\)/StarCraft/StarCraft.exe
 ## Use StarCraft Brood War 1.16.1 Tag
 
 TODO
-
-## Use Empty Tag
-
-This container uses Ubuntu 16.04 and Wine version 2.10 (Staging).
-
-This container does not contains Starcraft Brood War.
-
-Run the image (from the host):
-
-```
-$ docker pull nidup/starcraft:empty
-$ docker run -ti --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix --security-opt seccomp=unconfined nidup/starcraft:empty bash
-```
 
 ## Troubleshooting
 
@@ -53,6 +45,6 @@ $ id
 uid=1000(nico) gid=1000(nico) groups=1000(nico), 999(docker)
 ```
 
-## Update the Releases
+## Update the Images
 
-[Update the Tags](doc/update.md)
+[Update the Images](https://github.com/nidup/starcraft/blob/master/doc/update.md)
