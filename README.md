@@ -1,12 +1,10 @@
-# Starcraft Installer
+# Starcraft Brood War
 
-Utilities to install StarCraft Brood War 1.18 via Docker
+Docker files to install StarCraft Brood War 1.18
 
-![Image of BroodWar](doc/brood-war.jpg)
+![Image of BroodWar](https://github.com/nidup/starcraft/raw/master/doc/brood-war.jpg)
 
-## With Docker
-
-Tested on Ubuntu 16.04 with Docker version 17.03.1-ce & Wine version 2.10 (Staging).
+Tested on Ubuntu 16.04 with Docker 17.03.1-ce, the container using Wine version 2.10 (Staging).
 
 ### Clone this repository
 
@@ -89,38 +87,14 @@ docker run -ti --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix --secur
 wine ~/.wine/drive_c/Program\ Files\ \(x86\)/StarCraft/StarCraft.exe
 ```
 
-## On a Local Ubuntu 16.04
+## Troubleshooting
 
-### Install Wine Staging
+On your host:
+ - your user id and group id should be 1000
+ - your user must be in the docker group and you shouldn't run docker with sudo
 
-Install [wine stagging on ubuntu](https://wine-staging.com/installation.html#distro_ubuntu).
-
+To check your user and group id:
 ```
-wget -nc https://repos.wine-staging.com/wine/Release.key
-sudo apt-key add Release.key
-sudo apt-add-repository 'https://dl.winehq.org/wine-builds/ubuntu/'
-sudo apt-get update
-sudo apt-get install --install-recommends winehq-staging
-```
-
-Tested with the version wine-2.10 (Staging).
-
-Does not work (for me) with:
- - distribution package, wine 1.6.2 (install KO)
- - distribution wine HQ, wine-stable 2.0.1 (install KO, launch KO)
-
-### Download StarCraft-Setup.exe
-
-Download the file `StarCraft-Setup.exe` from the [official blizzard website](https://starcraft.com/en-us/articles/20674424).
-
-### Install
-
-```
-wine StarCraft-Setup.exe
-```
-
-### Launch
-
-```
-wine ~/.wine/drive_c/Program\ Files\ \(x86\)/StarCraft/StarCraft.exe
+$ id
+uid=1000(nico) gid=1000(nico) groups=1000(nico), 999(docker)
 ```
