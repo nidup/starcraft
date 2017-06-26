@@ -1,6 +1,6 @@
 # StarCraft Brood War
 
-Docker files to install StarCraft Brood War 1.18 or StarCraft Brood War 1.16.1.
+Docker Images for StarCraft Brood War v1.18 & v1.16.1
 
 ![Image of BroodWar](https://github.com/nidup/starcraft/raw/master/doc/brood-war.jpg)
 
@@ -10,19 +10,19 @@ Tested on Ubuntu 16.04 with Docker 17.03.1-ce.
 
 Installed from the [official blizzard website](https://starcraft.com/en-us/articles/20674424).
 
-Pull the image  (from the host):
+### Pull the image  (from the host):
 
 ```
 docker pull nidup/starcraft:v118
 ```
 
-Run the image (from the host):
+### Run the image (from the host):
 
 ```
 docker run -ti --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix --security-opt seccomp=unconfined nidup/starcraft:v118 bash
 ```
 
-Launch the game (from the image):
+### Launch the game (from the image):
 
 ```
 wine ~/.wine/drive_c/Program\ Files\ \(x86\)/StarCraft/StarCraft.exe
@@ -30,19 +30,19 @@ wine ~/.wine/drive_c/Program\ Files\ \(x86\)/StarCraft/StarCraft.exe
 
 ## Use StarCraft Brood War v1.16.1
 
-Pull the image  (from the host):
+### Pull the image  (from the host):
 
 ```
 docker pull nidup/starcraft:v116
 ```
 
-Run the image (from the host):
+### Run the image (from the host):
 
 ```
 docker run -ti --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix --security-opt seccomp=unconfined nidup/starcraft:v116 bash
 ```
 
-Launch the game (from the image):
+### Launch the game (from the image):
 
 ```
 wine ~/.wine/drive_c/Program\ Files\ \(x86\)/StarCraft1161/StarCraft.exe
